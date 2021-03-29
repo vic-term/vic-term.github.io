@@ -177,7 +177,7 @@
 					let duration = moment.duration(date.time.diff(moment(), 'milliseconds'), 'milliseconds').format("d [days], h [hours], m [minutes], s [seconds]")
 
 					document.getElementById("time").innerHTML =  `${duration.split(",")[0]},<span class="empty">${duration.split(",").slice(1).join(',')}</span>` ;
-					document.getElementById("desc").innerText = date.desc + ` (on ${date.time.format("YYYY-MM-DD")})`;
+					document.getElementById("desc").innerText = date.desc + ` (on ${date.time.format("Mo MMMM Y")})`;
 					document.title = duration + ` ` + date.desc + " | VIC Term Countdown"		
 
 				}, 1000);

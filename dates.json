@@ -1,0 +1,42 @@
+{
+
+    "vic": [
+
+        {
+            "desc": "until Term 1 ends.",
+            "time": "-04-01 14:30:00"
+        },
+
+        {
+            "desc": "until Term 2 starts.",
+            "time": "-04-19 08:00:00"
+        },
+
+        {
+            "desc": "until Term 2 ends.",
+            "time": "-06-25 14:30:00"
+        },
+
+        {
+            "desc": "until Term 3 starts.",
+            "time": "-07-12 08:00:00"
+        },
+
+        {
+            "desc": "until Term 3 ends.",
+            "time": "-09-17 14:30:00"
+        },
+
+        {
+            "desc": "until Term 4 starts.",
+            "time": "-10-04 08:00:00"
+        },
+
+        {
+            "desc": "until Term 4/2021 school year ends.",
+            "time": "-12-17 14:30:00"
+        }
+
+    ]
+
+}

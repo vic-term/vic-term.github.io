@@ -68,6 +68,7 @@
 		}
 
 		@media (max-height: 500px) {
+
 			h2#time {
 				font-size: 2.5rem;
 			}
@@ -75,6 +76,11 @@
 			.container {
 				padding: 20px;
 			}
+
+			subtitle {
+				font-size: 1rem;
+			}
+
 		}
  
 		@media (max-width: 500px) {
@@ -86,6 +92,11 @@
 			.container {
 				padding: 20px;
 			}
+
+			subtitle {
+				font-size: 1rem;
+			}
+
 		}
 
 		div#noImg p {
@@ -107,12 +118,17 @@
 		<subtitle id="desc"></subtitle>
 
 		<div id="noImg">	
-			<p>Want a custom background image? Add <code>?imgurl=[your image url]</code> or <code>?img=[your image search term]</code> to the URL. <a href="https://vic-term.github.io/?imgurl=https://img.wallpapersafari.com/desktop/1600/900/96/65/bFwHW8.jpg">Example</a></p>
+			<p>
+				Want a custom background image? Add <code>?imgurl=[your image url]</code> or <code>?img=[your image search term]</code> to the URL. 
+				<a id="example-link" href="https://vic-term.github.io/?imgurl=https://img.wallpapersafari.com/desktop/1600/900/96/65/bFwHW8.jpg">Example</a>
+			</p>
 		</div>
 
 	</div>
 
 	<script type="text/javascript">
+
+		document.getElementById("example-link").href = location.href + "?imgurl=https://img.wallpapersafari.com/desktop/1600/900/96/65/bFwHW8.jpg"
 
 		const enjoy = ' Enjoy your holidays! &#127881;';
 		const year = moment().format("Y");
@@ -166,25 +182,42 @@
 
 		]
 
-		for (let date of dates) {
+		if (!sp.get('date') || !sp.get('desc')) {
+			for (let date of dates) {
 
-			if (date.time.isBefore(moment())) {
-				break;
-			} else {
+				if (date.time.isBefore(moment())) {
+					break;
+				} else {
 
-				setInterval(() => {
+					setInterval(() => {
 
-					let duration = moment.duration(date.time.diff(moment(), 'milliseconds'), 'milliseconds').format("d [days], h [hours], m [minutes], s [seconds]")
+						duration = moment.duration(date.time.diff(moment(), 'milliseconds'), 'milliseconds').format("d [days], h [hours], m [minutes], s [seconds]")
 
-					document.getElementById("time").innerHTML =  `${duration.split(",")[0]},<span class="empty">${duration.split(",").slice(1).join(',')}</span>` ;
-					document.getElementById("desc").innerText = date.desc + ` (on ${date.time.format("Mo MMMM Y")})`;
-					document.title = duration + ` ` + date.desc + " | VIC Term Countdown"		
+						document.getElementById("time").innerHTML =  `${duration.split(",")[0]},<span class="empty">${duration.split(",").slice(1).join(',')}</span>` ;
+						document.getElementById("desc").innerText = date.desc + ` (on ${date.time.format("Mo MMMM Y")})`;
+						document.title = duration + ` ` + date.desc + " | VIC Term Countdown"		
 
-				}, 1000);
+					}, 100);
 
-				break;
+					break;
+
+				}
 
 			}
+		} else {
+
+			const time = moment(new Date(sp.get('date')));
+			const desc = sp.get('desc');
+
+			setInterval(() => {
+
+			duration = moment.duration(time.diff(moment(), 'milliseconds'), 'milliseconds').format("d [days], h [hours], m [minutes], s [seconds]")
+
+			document.getElementById("time").innerHTML =  `${duration.split(",")[0]},<span class="empty">${duration.split(",").slice(1).join(',')}</span>` ;
+			document.getElementById("desc").innerText = desc + ` (on ${time.format("Mo MMMM Y")})`;
+			document.title = duration + ` ` + desc + " | VIC Term Countdown"		
+
+			}, 100);
 
 		}
 

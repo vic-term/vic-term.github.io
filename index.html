@@ -194,6 +194,10 @@
 
 					setInterval(() => {
 
+						if (date.time.diff(moment(), 'milliseconds') < 0) {
+							return document.location.reload();
+						}
+
 						duration = moment.duration(date.time.diff(moment(), 'milliseconds'), 'milliseconds').format("d [days], h [hours], m [minutes], s [seconds]")
 
 						document.getElementById("time").innerHTML =  `${duration.split(",")[0]},<span class="empty">${duration.split(",").slice(1).join(',')}</span>` ;

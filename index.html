@@ -189,7 +189,7 @@
 			for (let date of dates) {
 
 				if (date.time.isBefore(moment())) {
-					break;
+					continue;
 				} else {
 
 					setInterval(() => {
